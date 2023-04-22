@@ -12,7 +12,7 @@ int main(void)
 
 	while (digit <= 102) /*48; decimal rep of f*/
 	{
-		putchat(digit);
+		putchar(digit);
 		/* after 9 we jump till 96; '*/
 		if (digit == 57)
 			digit += 39;
