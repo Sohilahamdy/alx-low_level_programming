@@ -1,12 +1,12 @@
-#include <stdio.h>
+#include <unistd.h>
 
 /**
  * main - entry point
  *
  * Description: print a quotte using write function
- *		write(int fd.const void *buf.size_t count)
+ *		ssize_t write(int fd.const void *buf.size_t count);
  *
- * Return: 0 (success)
+ * Return: 1 (error).
 */
 
 int main(void)
