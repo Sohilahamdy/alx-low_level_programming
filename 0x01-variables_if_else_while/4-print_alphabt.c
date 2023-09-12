@@ -1,0 +1,21 @@
+#include <stdio>
+
+/**
+ * main - A program that prints the alphabet in lowercase
+ * Return: 0 (success)
+ */
+
+int main(void)
+{
+	char letter;
+
+	for (letter = 'a'; letter <= 'z'; letter++)
+	{
+		if (letter != 'e' && letter != 'q')
+			putchar(letter);
+	}
+
+	putchar('\n');
+
+	return (0);
+}
