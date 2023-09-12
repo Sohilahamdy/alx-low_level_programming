@@ -1,12 +1,11 @@
 #include "main.h"
 
 /**
- * main - a function that prints the alphabet, in lowercase
- *
- * Return: 0 (success)
+ * print_alphabet - Entry point
+ * Return:0
  */
 
-int main(void)
+void print_alphabet(void)
 {
 	char c = 'a';
 
