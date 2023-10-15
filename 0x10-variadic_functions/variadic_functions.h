@@ -3,7 +3,6 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-#include "_putchar.c"
 
 typedef struct printer
 {
