@@ -7,7 +7,7 @@
  * @str: string to be counted
  * Return: returns length of string
  */
-int _strlen(const char *str)
+int _strlen(char *str)
 {
 	int lenth = 0;
 
@@ -56,7 +56,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (name == NULL || age < 0 || owner == NULL)
 		return (NULL);
 
-	dog - (dog_t *) malloc(sizeof(dog_t));
+	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
 		return (NULL);
 
