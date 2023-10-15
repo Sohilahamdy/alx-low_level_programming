@@ -6,7 +6,7 @@ nclude "function_pointers.h"
  * *@size: size of array
  * *@action: function to be executed
  * *
- * */
+ */
 
 void array_iterator(int *array, size_t size, void (*action)(int))
 {
