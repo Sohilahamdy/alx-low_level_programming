@@ -1,20 +1,20 @@
+#include <stdio.h>
 #include "dog.h"
 
 /**
 * print_dog - prints a struct dog
-* @d: dog identification
+*@d: dog identification
 *
-* Return: void.
 */
 
 void print_dog(struct dog *d)
 {
-	if (d)
+	if (d == NULL)
 	{
-		printf("name: %s\n", d->name ? d->name : "(nil)");
-		printf("age: %f\n", d->age);
-		printf("owner: %s\n", d->owner ? d->owner : "(nil)");
-
+		return;
 	}
-
+	printf("Name: %s\n", (d->name != NULL) ? d->name : "(nil)");
+	printf("Age: %d\n", d->age);
+	printf("Breed: %s\n", (d->breed != NULL) ? d->breed : "(nil)");
 }
+
