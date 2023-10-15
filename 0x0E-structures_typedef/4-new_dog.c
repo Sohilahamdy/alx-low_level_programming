@@ -1,38 +1,38 @@
-#include <stdlib.h>
 #include "dog.h"
+#include <stdlib.h>
+
 
 /**
  * *_strlen - returns length of
- * a string
- * @str: string to be counted
- * Return: returns length of string
- */
-int _strlen(const char *str)
+ * *a string
+ * *@str: string to be counted
+ * *Return: returns length of string
+ * */
+int _strlen(char *str)
 {
-	int lenth = 0;
+	int len = 0;
+	while (str)
+		len++;
 
-	while (*str++)
-		lenth++;
-
-	return (lenth);
+	return (len);
 }
 
 
 /**
  * *_strcopy - copy string pointed by src
- * into dest variable
- * @dest:buffer storing string copy
- * @src: buffer storing string to copy
- * Return:returns copied string
- */
+ * *into dest variable
+ * *@dest:buffer storing string copy
+ * *@src: buffer storing string to copy
+ * *Return:returns copied string
+ * */
 char *_strcopy(char *dest, char *src)
 {
-	int i;
+	int index = 0;
 
-	for (i = 0; src[i]; i++)
-		dest[i] = src[i];
+	for (; src[index] ; index++)
+		dest[index] = src[index];
 
-	dest[i] = '\0';
+	dest[index] = '\0';
 	return (dest);
 }
 
@@ -41,32 +41,32 @@ char *_strcopy(char *dest, char *src)
 
 /**
  * *new_dog - creates a new dog
- * @name: name of new dog
- * @age: age of new dog
- * @owner: owner of new dog
- * Return: returns NULL in case* of failure
- */
+ * *@name: name of new dog
+ * *@age: age of new dog
+ * *@owner: owner of new dog
+ * *Return: returns NULL in case
+ * *of failure
+ * */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
 
-	/*if name and owner are empty and age is less than zero return null*/
-	if (name || age < 0 || owner)
+	if (name == NULL || age < 0 || owner == NULL)
 		return (NULL);
 
-	dog = (dog_t *) malloc(sizeof(dog_t));
+	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
 		return (NULL);
 
 	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
-	if ((*dog).name == NULL)
+	if (dog->name == NULL)
 	{
 		free(dog);
 		return (NULL);
 	}
 
 	dog->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-	if ((*dog).owner == NULL)
+	if (dog->owner == NULL)
 	{
 		free(dog->name);
 		free(dog);
