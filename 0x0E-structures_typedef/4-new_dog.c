@@ -45,7 +45,7 @@ char *_strcopy(char *dest, char *src)
  * @name: name of new dog
  * @age: age of new dog
  * @owner: owner of new dog
- * 
+ *
  * Return: returns NULL in case of failure
  */
 
