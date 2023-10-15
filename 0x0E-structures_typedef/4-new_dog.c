@@ -7,14 +7,14 @@
  * @str: string to be counted
  * Return: returns length of string
  */
-int _strlen(char *str)
+int _strlen(const char *str)
 {
-	int len = 0;
+	int lenth = 0;
 
-	while (str)
-		len++;
+	while (*str++)
+		lenth++;
 
-	return (len);
+	return (lenth);
 }
 
 
