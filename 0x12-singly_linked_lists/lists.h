@@ -11,7 +11,7 @@
  * @lan: length of the string
  * @next: points to the next node
  *
- * description: singly linked thenode structure
+ * description: signly linked the node structure
  * for Holberton project
  */
 typedef struct list_s
