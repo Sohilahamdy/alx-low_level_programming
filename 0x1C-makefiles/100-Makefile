@@ -1,35 +1,32 @@
-#!/usr/bin/make -f
+# Compiler and flags
+CC := gcc
+CFLAGS := -Wall -Werror -Wextra -pedantic
 
-# Variables
-CC = gcc
-SRC = main.c school.c
-OBJ = main.o school.o
-NAME = school
-CFLAGS = -Wall -Werror -Wextra -pedantic
+# Files and directories
+SRC := $(wildcard *.c)
+OBJ := $(SRC:.c=.o)
+NAME := school
 
-# Default rule: build executable
+# Default rule
 all: $(NAME)
 
-# Build the executable
+# Rule to build the executable
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-# Remove object files
+# Clean up Emacs and Vim temporary files along with the executable
+clean:
+	$(RM) -f $(NAME) *.tmp *.swp *.swo
+
+# Clean up object files
 oclean:
-	$(RM) $(OBJ)
+	$(RM) -f $(OBJ)
 
-# Remove executable and object files
-fclean: oclean
-	$(RM) $(NAME)
+# Full clean: executable, object files, and temporary files
+fclean: clean oclean
 
-# Clean up Emacs and Vim temporary files and the executable
-clean: fclean
-	$(RM) *~ \#*\# .*.swp
-
-# Force recompilation
+# Rebuild everything
 re: fclean all
 
-# Ensure that the header file m.h exists
-ifeq ($(shell test -e m.h; echo $$?),1)
-$(error Header file m.h is missing)
-endif
+# Prevent the Makefile from running if m.h is missing
+-include m.h
