@@ -3,7 +3,7 @@
 # Variables
 CC = gcc
 SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
+OBJ = main.o school.o
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
@@ -16,15 +16,15 @@ $(NAME): $(OBJ)
 
 # Remove object files
 oclean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 # Remove executable and object files
 fclean: oclean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 # Clean up Emacs and Vim temporary files and the executable
 clean: fclean
-	rm -f *~ \#*\# .*.swp
+	$(RM) *~ \#*\# .*.swp
 
 # Force recompilation
 re: fclean all
