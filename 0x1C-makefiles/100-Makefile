@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+
+# Compiler and flags
+CC := gcc
+CFLAGS := -Wall -Werror -Wextra -pedantic
+
+# Variables
+NAME := school
+SRC := $(wildcard *.c)
+OBJ := $(SRC:.c=.o)
+
+# Default rule to build the executable
+all: $(NAME)
+
+# Rule to build the executable
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
+
+# Rule to clean Emacs and Vim temporary files and the executable
+clean:
+	$(RM) -f *~ $(NAME)
+
+# Rule to delete object files
+oclean:
+	$(RM) -f *.o
+
+# Rule to delete all files created by make
+fclean: clean oclean
+
+# Rule to force recompilation
+re: fclean all
+
+# Check for missing header file m.h
+$(OBJ): $(SRC)
+	@test -f m.h || (echo "Header file m.h is missing!" && exit 1)
+
+# Phony targets
+.PHONY: all clean oclean fclean re
