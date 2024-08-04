@@ -1,35 +1,20 @@
-# Compiler and flags
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -pedantic
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Files
-SRC := $(shell ls *.c)
-OBJ := $(patsubst %.c, %.o, $(SRC))
-NAME := school
+.PHONY: all clean oclean fclean re
 
-# Default rule
-all: $(NAME)
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-# Rule to build the executable
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-
-# Clean up Emacs and Vim temporary files along with the executable
 clean:
-	@echo "Cleaning up..."
-	@rm -f $(NAME)
-	@rm -f *.tmp *.swp *.swo
+	$(RM) *~ $(NAME)
 
-# Clean up object files
 oclean:
-	@echo "Cleaning object files..."
-	@rm -f $(OBJ)
+	$(RM) $(OBJ)
 
-# Full clean: executable, object files, and temporary files
 fclean: clean oclean
 
-# Rebuild everything
 re: fclean all
-
-# Prevent the Makefile from running if m.h is missing
--include m.h
