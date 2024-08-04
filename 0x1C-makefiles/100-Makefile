@@ -3,33 +3,33 @@
 # Variables
 CC = gcc
 SRC = main.c school.c
-OBJ = main.o school.o
+OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# All rule
+# Default rule: build executable
 all: $(NAME)
 
-# Create executable
+# Build the executable
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-# Clean up
-clean:
-	rm -f *.o
-
 # Remove object files
 oclean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 # Remove executable and object files
-fclean: clean
+fclean: oclean
 	rm -f $(NAME)
+
+# Clean up Emacs and Vim temporary files and the executable
+clean: fclean
+	rm -f *~ \#*\# .*.swp
 
 # Force recompilation
 re: fclean all
 
-# Ensure missing header file causes failure
+# Ensure that the header file m.h exists
 ifeq ($(shell test -e m.h; echo $$?),1)
 $(error Header file m.h is missing)
 endif
