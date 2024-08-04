@@ -2,8 +2,8 @@
 CC := gcc
 CFLAGS := -Wall -Werror -Wextra -pedantic
 
-# Files and directories
-SRC := $(wildcard *.c)
+# Files
+SRC := $(shell ls *.c)
 OBJ := $(SRC:.c=.o)
 NAME := school
 
@@ -16,11 +16,12 @@ $(NAME): $(OBJ)
 
 # Clean up Emacs and Vim temporary files along with the executable
 clean:
-	$(RM) -f $(NAME) *.tmp *.swp *.swo
+	@if [ -f $(NAME) ]; then $(RM) -f $(NAME); fi
+	@if [ -f *.tmp ] || [ -f *.swp ] || [ -f *.swo ]; then $(RM) -f *.tmp *.swp *.swo; fi
 
 # Clean up object files
 oclean:
-	$(RM) -f $(OBJ)
+	@if [ -f *.o ]; then $(RM) -f *.o; fi
 
 # Full clean: executable, object files, and temporary files
 fclean: clean oclean
