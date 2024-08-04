@@ -4,7 +4,7 @@ CFLAGS := -Wall -Werror -Wextra -pedantic
 
 # Files
 SRC := $(shell ls *.c)
-OBJ := $(SRC:.c=.o)
+OBJ := $(patsubst %.c, %.o, $(SRC))
 NAME := school
 
 # Default rule
@@ -16,12 +16,14 @@ $(NAME): $(OBJ)
 
 # Clean up Emacs and Vim temporary files along with the executable
 clean:
-	@if [ -f $(NAME) ]; then $(RM) -f $(NAME); fi
-	@if [ -f *.tmp ] || [ -f *.swp ] || [ -f *.swo ]; then $(RM) -f *.tmp *.swp *.swo; fi
+	@echo "Cleaning up..."
+	@rm -f $(NAME)
+	@rm -f *.tmp *.swp *.swo
 
 # Clean up object files
 oclean:
-	@if [ -f *.o ]; then $(RM) -f *.o; fi
+	@echo "Cleaning object files..."
+	@rm -f $(OBJ)
 
 # Full clean: executable, object files, and temporary files
 fclean: clean oclean
