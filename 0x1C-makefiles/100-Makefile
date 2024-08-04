@@ -3,7 +3,7 @@
 # Variables
 CC = gcc
 SRC = main.c school.c
-OBJ = $(SRC:.c=.o)
+OBJ = main.o school.o
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
@@ -16,21 +16,20 @@ $(NAME): $(OBJ)
 
 # Clean up
 clean:
-	$(RM) *.o
+	rm -f *.o
 
 # Remove object files
 oclean:
-	$(RM) *.o
+	rm -f *.o
 
 # Remove executable and object files
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 # Force recompilation
 re: fclean all
 
 # Ensure missing header file causes failure
-ifeq ($(shell test -e m.h; echo $$?),0)
-else
+ifeq ($(shell test -e m.h; echo $$?),1)
 $(error Header file m.h is missing)
 endif
